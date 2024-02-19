@@ -10,14 +10,25 @@ let model, skeleton, mixer, clock;
 
 const crossFadeControls = [];
 
-let currentBaseAction = "idle";
+let currentBaseAction = "9";
 const allActions = [];
 const baseActions = {
-  idle: { weight: 1 },
-  walk: { weight: 0 },
-  run: { weight: 0 },
+  "1": { weight: 0 },
+  "2": { weight: 0 },
+  "3": { weight: 0 },
+  "4": { weight: 0 },
+  "5": { weight: 0 },
+  "6": { weight: 0 },
+  "7": { weight: 0 },
+  "8": { weight: 0 },
+  "9": { weight: 1 },
+  "0": { weight: 0 }
+  // walk: { weight: 0 },
+  // run: { weight: 0 },
 };
 const additiveActions = {
+  "run_grandpa_run_Armature": { weight: 0 },
+  "Armature|mixamo.com|Layer0": { weight: 0 },
   sneak_pose: { weight: 0 },
   sad_pose: { weight: 0 },
   agree: { weight: 0 },
@@ -61,12 +72,41 @@ function init() {
   scene.add(mesh);
 
   const loader = new GLTFLoader();
-  loader.load("models/Xbot.glb", function (gltf) {
+  
+  // let opaGeometry;
+  
+  // loader.load("models/opa.glb", function (gltf) {
+  //   model = gltf.scene;
+  //   console.log(model);
+  //   //scene.add(model);
+  //   model.traverse(function (object) {
+  //     if (object.isMesh) {
+  //       console.log(object);
+  //       if(object.name == "Oldman__5") {
+  //         opaGeometry = object.geometry;
+  //       }
+  //     }
+  //   });
+  // });
+
+  // working_base_2-with_4.glb
+
+  loader.load("models/working_base_all.glb", function (gltf) {
     model = gltf.scene;
     scene.add(model);
 
     model.traverse(function (object) {
-      if (object.isMesh) object.castShadow = true;
+      if (object.isMesh) {
+        object.castShadow = true;
+        // console.log(object);
+        // if (object.name == "Beta_Surface") {
+        //   console.log("olololo");
+        //   console.log(opaGeometry);
+          
+          
+        //   //object.geometry = opaGeometry;
+        // }
+      }
     });
 
     skeleton = new THREE.SkeletonHelper(model);
@@ -85,6 +125,7 @@ function init() {
       if (baseActions[name]) {
         const action = mixer.clipAction(clip);
         activateAction(action);
+        console.log(action);
         baseActions[name].action = action;
         allActions.push(action);
       } else if (additiveActions[name]) {
@@ -102,6 +143,8 @@ function init() {
         allActions.push(action);
       }
     }
+
+    //console.log(model);
 
     createPanel();
 
