@@ -10,10 +10,10 @@ let model, skeleton, mixer, clock;
 
 const crossFadeControls = [];
 
-let currentBaseAction = "9";
+let currentBaseAction = "1";
 const allActions = [];
 const baseActions = {
-  "1": { weight: 0 },
+  "1": { weight: 1 },
   "2": { weight: 0 },
   "3": { weight: 0 },
   "4": { weight: 0 }, 
@@ -21,8 +21,22 @@ const baseActions = {
   "6": { weight: 0 },
   "7": { weight: 0 },
   "8": { weight: 0 },
-  "9": { weight: 1 },
-  "0": { weight: 0 }
+  "9": { weight: 0 },
+  "0": { weight: 0 },
+  "head_shake": { weight: 0 },
+  "surprise": { weight: 0 },
+  "sitting_leg_swing": { weight: 0 },
+  "wave": { weight: 0 },
+  "seat_ups": { weight: 0 },
+  "salsa_1": { weight: 0 },
+  "hands_wave": { weight: 0 },
+  "punch": { weight: 0 },
+  "leg_swing": { weight: 0 },
+  "jog_around": { weight: 0 },
+  "hand_dismiss": { weight: 0 },
+  "jump": { weight: 0 },
+  "salsa_2": { weight: 0 },
+  "salut": { weight: 0 }
   // walk: { weight: 0 },
   // run: { weight: 0 },
 };
@@ -91,7 +105,7 @@ function init() {
 
   // working_base_2-with_4.glb
 
-  loader.load("models/working_base_all.glb", function (gltf) {
+  loader.load("models/all_new_3-4_export.glb", function (gltf) {
     model = gltf.scene;
     scene.add(model);
 
