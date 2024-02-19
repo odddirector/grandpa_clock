@@ -16,7 +16,7 @@ const baseActions = {
   "1": { weight: 0 },
   "2": { weight: 0 },
   "3": { weight: 0 },
-  "4": { weight: 0 },
+  "4": { weight: 0 }, 
   "5": { weight: 0 },
   "6": { weight: 0 },
   "7": { weight: 0 },
